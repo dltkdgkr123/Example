@@ -1,4 +1,4 @@
-// push,pop,empty 구현
+// push/pop/empty 구현
 
 #include <iostream>
 #include <stack>
