@@ -1,6 +1,6 @@
 // push,pop,empty 구현
 
-#include <Iostream>
+#include <iostream>
 #include <stack>
 
 template<typename T>
