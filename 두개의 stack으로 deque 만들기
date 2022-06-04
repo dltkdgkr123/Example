@@ -1,0 +1,92 @@
+// push,pop,empty 구현
+
+#include <Iostream>
+#include <stack>
+
+template<typename T>
+class deque
+{
+	std::stack<T> s1;
+	std::stack<T> s2;
+
+public:
+
+	bool is_empty()
+	{
+		if (s1.empty() && s2.empty())
+		return true;
+
+		return false;
+	}
+
+	void push_back(T e)
+	{
+		s1.push(e);
+		std::cout << "push " << s1.top() << "\n";
+	}
+
+	void pop_front()
+	{
+		 if (!is_empty())
+		{
+			if (s2.empty())
+			{
+				while (!s1.empty())
+				{
+					s2.push(s1.top());
+					s1.pop();
+				}
+				std::cout << "pop " << s2.top() << "\n";
+				s2.pop();
+			}
+			else
+			{
+				std::cout << "pop " << s2.top() << "\n";
+				s2.pop();
+			}
+		}
+		 else
+			 std::cout << "dequeue is empty" << "\n";
+	}
+
+	void pop_back()
+	{
+		if (!is_empty())
+		{
+			if (s1.empty())
+			{
+				while (!s2.empty())
+				{
+					s1.push(s2.top());
+					s2.pop();
+				}
+				std::cout << "pop " << s1.top() << "\n";
+				s1.pop();
+			}
+			else
+			{
+				std::cout << "pop " << s1.top() << "\n";
+				s1.pop();
+			}
+		}
+		else
+			std::cout << "dequeue is empty" << "\n";
+	}
+
+};
+
+int main()
+{
+	deque<char> dq;
+	
+	dq.push_back('a');
+	dq.push_back('b');
+	dq.push_back('c');
+	
+	dq.pop_back(); // pop c;
+	dq.pop_front(); // pop a;
+	std::cout << dq.is_empty() << "\n"; // output : 0;
+	dq.pop_back(); // pop b;
+	std::cout << dq.is_empty() << "\n"; // output : 1;
+	dq.pop_front(); // output : dequeue is empty;
+}
